@@ -1,7 +1,7 @@
 {
   "compatibilityLevel": "JAVA_8",
   "minVersion": "0.7",
-  "package": "cc.polyfrost.example.mixin",
+  "package": "net.irisfeanora.mods.bwstats.mixin",
   "refmap": "mixins.oneconfig.refmap.json",
   "verbose": true,
   "client": [

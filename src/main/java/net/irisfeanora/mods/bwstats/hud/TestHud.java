@@ -1,4 +1,4 @@
-package cc.polyfrost.example.hud;
+package net.irisfeanora.mods.bwstats.hud;
 
 import cc.polyfrost.oneconfig.hud.SingleTextHud;
 import net.minecraft.client.Minecraft;

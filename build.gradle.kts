@@ -28,7 +28,7 @@ blossom {
 }
 
 version = mod_version
-group = "cc.polyfrost"
+group = "net.irisfeanora.mods"
 base {
     archivesName.set("$mod_name ($platform)")
 }

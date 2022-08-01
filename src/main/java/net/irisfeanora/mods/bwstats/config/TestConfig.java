@@ -1,7 +1,7 @@
-package cc.polyfrost.example.config;
+package net.irisfeanora.mods.bwstats.config;
 
-import cc.polyfrost.example.ExampleMod;
-import cc.polyfrost.example.hud.TestHud;
+import net.irisfeanora.mods.bwstats.BWStatsMod;
+import net.irisfeanora.mods.bwstats.hud.TestHud;
 import cc.polyfrost.oneconfig.config.Config;
 import cc.polyfrost.oneconfig.config.annotations.HUD;
 import cc.polyfrost.oneconfig.config.annotations.Switch;
@@ -24,7 +24,7 @@ public class TestConfig extends Config {
     public static boolean test = true;
 
     public TestConfig() {
-        super(new Mod(ExampleMod.NAME, ModType.UTIL_QOL), ExampleMod.MODID + ".json");
+        super(new Mod(BWStatsMod.NAME, ModType.UTIL_QOL), BWStatsMod.MODID + ".json");
         initialize();
     }
 }
