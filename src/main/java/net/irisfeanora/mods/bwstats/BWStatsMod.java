@@ -5,6 +5,7 @@ import net.irisfeanora.mods.bwstats.config.TestConfig;
 
 import cc.polyfrost.oneconfig.utils.commands.CommandManager;
 
+import net.irisfeanora.mods.bwstats.util.TablistFooterPeriodicParser;
 import net.minecraft.client.gui.GuiPlayerTabOverlay;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -30,5 +31,8 @@ public class BWStatsMod {
         CommandManager.INSTANCE.registerCommand(ConfigCommand.class);
 
         GuiPlayerTabOverlay.class.getDeclaredField("footer").setAccessible(true);
+
+        TablistFooterPeriodicParser parser = new TablistFooterPeriodicParser();
+        parser.start();
     }
 }
