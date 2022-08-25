@@ -5,12 +5,13 @@ import net.irisfeanora.mods.bwstats.config.TestConfig;
 
 import cc.polyfrost.oneconfig.utils.commands.CommandManager;
 
-import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiPlayerTabOverlay;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.network.FMLNetworkEvent.ClientConnectedToServerEvent;
+
+import java.lang.reflect.Field;
 
 @Mod(modid = BWStatsMod.MODID, name = BWStatsMod.NAME, version = BWStatsMod.VERSION)
 public class BWStatsMod {
@@ -23,22 +24,11 @@ public class BWStatsMod {
     public TestConfig config;
 
     @EventHandler
-    public void onFMLInitialization(FMLInitializationEvent event) {
+    public void onFMLInitialization(FMLInitializationEvent event) throws NoSuchFieldException {
         config = new TestConfig();
         client = new HypixelAPIClient();
         CommandManager.INSTANCE.registerCommand(ConfigCommand.class);
-    }
 
-    @EventHandler
-    public void onHypixelJoined(ClientConnectedToServerEvent event) {
-        if(event.isLocal) {
-            return;
-        }
-
-        if(!Minecraft.getMinecraft().getCurrentServerData().serverIP.contains("hypixel")) {
-            return;
-        }
-
-        client.refreshStats();
+        GuiPlayerTabOverlay.class.getDeclaredField("footer").setAccessible(true);
     }
 }
