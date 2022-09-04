@@ -1,5 +1,6 @@
 package net.irisfeanora.mods.bwstats.util;
 
+import net.irisfeanora.mods.bwstats.BWStatsMod;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiPlayerTabOverlay;
 
@@ -13,7 +14,7 @@ public class TablistFooterPeriodicParser extends Thread {
 
     public void run()  {
 
-        Field footer = null;
+        Field footer;
 
         try {
             footer = GuiPlayerTabOverlay.class.getField("footer");
@@ -59,7 +60,7 @@ public class TablistFooterPeriodicParser extends Thread {
                     continue;
                 }
 
-                SessionStatsContainer.setGameStats(kills, finals, beds);
+                BWStatsMod.INSTANCE.container.setGameStats(kills, finals, beds);
 
             } catch (IllegalAccessException e) {
                 return;

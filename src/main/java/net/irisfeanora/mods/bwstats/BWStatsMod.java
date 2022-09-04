@@ -1,10 +1,12 @@
 package net.irisfeanora.mods.bwstats;
 
-import net.irisfeanora.mods.bwstats.command.ConfigCommand;
-import net.irisfeanora.mods.bwstats.config.TestConfig;
-
 import cc.polyfrost.oneconfig.utils.commands.CommandManager;
 
+import net.irisfeanora.mods.bwstats.command.ConfigCommand;
+import net.irisfeanora.mods.bwstats.config.TestConfig;
+import net.irisfeanora.mods.bwstats.config.TextFormatSettings;
+import net.irisfeanora.mods.bwstats.config.TextFormatType;
+import net.irisfeanora.mods.bwstats.util.SessionStatsContainer;
 import net.irisfeanora.mods.bwstats.util.TablistFooterPeriodicParser;
 import net.minecraft.client.gui.GuiPlayerTabOverlay;
 import net.minecraftforge.fml.common.Mod;
@@ -23,6 +25,8 @@ public class BWStatsMod {
     public static BWStatsMod INSTANCE;
     public HypixelAPIClient client;
     public TestConfig config;
+    public SessionStatsContainer container;
+    public TextFormatSettings formatSettings = new TextFormatSettings(TextFormatType.COLON);
 
     @EventHandler
     public void onFMLInitialization(FMLInitializationEvent event) throws NoSuchFieldException {
