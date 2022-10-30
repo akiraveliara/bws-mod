@@ -3,12 +3,13 @@ package net.irisfeanora.mods.bwstats;
 import cc.polyfrost.oneconfig.utils.commands.CommandManager;
 
 import net.irisfeanora.mods.bwstats.command.ConfigCommand;
-import net.irisfeanora.mods.bwstats.config.TestConfig;
+import net.irisfeanora.mods.bwstats.config.BWStatsConfig;
 import net.irisfeanora.mods.bwstats.config.TextFormatSettings;
 import net.irisfeanora.mods.bwstats.config.TextFormatType;
 import net.irisfeanora.mods.bwstats.util.HypixelAPIClient;
 import net.irisfeanora.mods.bwstats.util.SessionStatsContainer;
 import net.irisfeanora.mods.bwstats.util.TablistFooterPeriodicParser;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiPlayerTabOverlay;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -23,14 +24,15 @@ public class BWStatsMod {
     @Instance(MODID)
     public static BWStatsMod INSTANCE;
     public HypixelAPIClient client;
-    public TestConfig config;
+    public BWStatsConfig config;
     public SessionStatsContainer container;
     public TextFormatSettings formatSettings = new TextFormatSettings(TextFormatType.COLON);
 
     @EventHandler
     public void onFMLInitialization(FMLInitializationEvent event) throws NoSuchFieldException {
-        config = new TestConfig();
-        client = new HypixelAPIClient();
+        config = new BWStatsConfig();
+        client = new HypixelAPIClient(BWStatsConfig.callDelay * 1000, BWStatsConfig.token, Minecraft.getMinecraft().getSession().getPlayerID());
+        client.start();
         CommandManager.INSTANCE.registerCommand(ConfigCommand.class);
 
         GuiPlayerTabOverlay.class.getDeclaredField("footer").setAccessible(true);
