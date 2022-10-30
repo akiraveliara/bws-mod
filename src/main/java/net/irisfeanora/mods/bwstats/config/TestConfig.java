@@ -24,7 +24,7 @@ public class TestConfig extends Config {
     public static boolean test = true;
 
     public TestConfig() {
-        super(new Mod(BWStatsMod.NAME, ModType.UTIL_QOL), BWStatsMod.MODID + ".json");
+        super(new Mod(BWStatsMod.NAME, ModType.HYPIXEL), BWStatsMod.MODID + ".json");
         initialize();
     }
 }

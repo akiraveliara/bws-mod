@@ -6,6 +6,7 @@ import net.irisfeanora.mods.bwstats.command.ConfigCommand;
 import net.irisfeanora.mods.bwstats.config.TestConfig;
 import net.irisfeanora.mods.bwstats.config.TextFormatSettings;
 import net.irisfeanora.mods.bwstats.config.TextFormatType;
+import net.irisfeanora.mods.bwstats.util.HypixelAPIClient;
 import net.irisfeanora.mods.bwstats.util.SessionStatsContainer;
 import net.irisfeanora.mods.bwstats.util.TablistFooterPeriodicParser;
 import net.minecraft.client.gui.GuiPlayerTabOverlay;
@@ -13,8 +14,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-
-import java.lang.reflect.Field;
 
 @Mod(modid = BWStatsMod.MODID, name = BWStatsMod.NAME, version = BWStatsMod.VERSION)
 public class BWStatsMod {
