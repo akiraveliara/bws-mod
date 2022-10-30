@@ -1,6 +1,6 @@
 package net.irisfeanora.mods.bwstats.util;
 
-import net.irisfeanora.mods.bwstats.config.TextFormatSettings;
+import net.irisfeanora.mods.bwstats.config.TextFormatType;
 
 public class SessionStatsContainer {
     private static int sessionKills, sessionFinals, sessionBeds, sessionWins;
@@ -48,25 +48,49 @@ public class SessionStatsContainer {
         }
     }
 
-    public String formatGameStats(TextFormatSettings settings) {
+    public String formatGameStats(TextFormatType type) {
         StringBuilder builder = new StringBuilder();
 
-        switch(settings.type) {
+        switch(type) {
             case DASH:
-                builder.append("Kills - ").append(gameKills);
-                builder.append("Finals - ").append(gameFinals);
-                builder.append("Beds - ").append(gameBeds);
+                builder.append("Kills - ").append(gameKills).append('\n');
+                builder.append("Finals - ").append(gameFinals).append('\n');
+                builder.append("Beds - ").append(gameBeds).append('\n');
                 break;
             case COLON:
-                builder.append("Kills: ").append(gameKills);
-                builder.append("Finals: ").append(gameFinals);
-                builder.append("Beds: ").append(gameBeds);
+                builder.append("Kills: ").append(gameKills).append('\n');
+                builder.append("Finals: ").append(gameFinals).append('\n');
+                builder.append("Beds: ").append(gameBeds).append('\n');
                 break;
             case SQUARE_BRACKET:
-                builder.append("[Kills] ").append(gameKills);
-                builder.append("[Finals] ").append(gameFinals);
-                builder.append("[Beds] ").append(gameBeds);
+                builder.append("[Kills] ").append(gameKills).append('\n');
+                builder.append("[Finals] ").append(gameFinals).append('\n');
+                builder.append("[Beds] ").append(gameBeds).append('\n');
                 break;
+        }
+
+        return builder.toString();
+    }
+
+    public String formatSessionStats(TextFormatType type) {
+        StringBuilder builder = new StringBuilder();
+
+        switch(type) {
+            case DASH:
+                builder.append("Session Kills - ").append(sessionKills).append(" | KDR - ").append(String.format("%.2f", (float)sessionKills / sessionDeaths)).append('\n');
+                builder.append("Session Final Kills - ").append(sessionFinals).append(" | FKDR - ").append(String.format("%.2f", (float)sessionFinals / sessionFinalDeaths)).append('\n');
+                builder.append("Session Beds - ").append(sessionBeds).append(" | BBLR - ").append(String.format("%.2f", (float)sessionBeds / sessionBedsLost)).append('\n');
+                builder.append("Session Wins - ").append(sessionWins).append(" | WLR - ").append(String.format("%.2f", (float)sessionWins / sessionLosses)).append('\n');
+            case COLON:
+                builder.append("Session Kills: ").append(sessionKills).append(" | KDR: ").append(String.format("%.2f", (float)sessionKills / sessionDeaths)).append('\n');
+                builder.append("Session Final Kills: ").append(sessionFinals).append(" | FKDR: ").append(String.format("%.2f", (float)sessionFinals / sessionFinalDeaths)).append('\n');
+                builder.append("Session Beds: ").append(sessionBeds).append(" | BBLR: ").append(String.format("%.2f", (float)sessionBeds / sessionBedsLost)).append('\n');
+                builder.append("Session Wins: ").append(sessionWins).append(" | WLR: ").append(String.format("%.2f", (float)sessionWins / sessionLosses)).append('\n');
+            case SQUARE_BRACKET:
+                builder.append("[Session Kills] ").append(sessionKills).append(" | [KDR] - ").append(String.format("%.2f", (float)sessionKills / sessionDeaths)).append('\n');
+                builder.append("[Session Final Kills] - ").append(sessionFinals).append(" | FKDR] - ").append(String.format("%.2f", (float)sessionFinals / sessionFinalDeaths)).append('\n');
+                builder.append("[Session Beds] - ").append(sessionBeds).append(" | [BBLR] - ").append(String.format("%.2f", (float)sessionBeds / sessionBedsLost)).append('\n');
+                builder.append("[Session Wins] - ").append(sessionWins).append(" | [WLR] - ").append(String.format("%.2f", (float)sessionWins / sessionLosses)).append('\n');
         }
 
         return builder.toString();
