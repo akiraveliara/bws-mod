@@ -2,8 +2,6 @@ package net.irisfeanora.mods.bwstats.hud;
 
 import cc.polyfrost.oneconfig.hud.SingleTextHud;
 import net.irisfeanora.mods.bwstats.util.BWStatsUtil;
-import net.irisfeanora.mods.bwstats.util.SessionStatsContainer;
-import net.minecraft.client.Minecraft;
 
 public class GameStatsHud extends SingleTextHud {
 
@@ -15,6 +13,6 @@ public class GameStatsHud extends SingleTextHud {
 
     @Override
     protected String getText(boolean example) {
-        return notSupportedText;
+        return BWStatsUtil.shouldRender() ? BWStatsUtil.getGameStats() : notSupportedText;
     }
 }
