@@ -4,8 +4,6 @@ import cc.polyfrost.oneconfig.utils.commands.CommandManager;
 
 import net.irisfeanora.mods.bwstats.command.ConfigCommand;
 import net.irisfeanora.mods.bwstats.config.BWStatsConfig;
-import net.irisfeanora.mods.bwstats.config.TextFormatSettings;
-import net.irisfeanora.mods.bwstats.config.TextFormatType;
 import net.irisfeanora.mods.bwstats.util.HypixelAPIClient;
 import net.irisfeanora.mods.bwstats.util.SessionStatsContainer;
 import net.irisfeanora.mods.bwstats.util.TablistFooterPeriodicParser;
@@ -26,7 +24,6 @@ public class BWStatsMod {
     public HypixelAPIClient client;
     public BWStatsConfig config;
     public SessionStatsContainer container;
-    public TextFormatSettings formatSettings = new TextFormatSettings(TextFormatType.COLON);
 
     @EventHandler
     public void onFMLInitialization(FMLInitializationEvent event) throws NoSuchFieldException {
@@ -35,7 +32,7 @@ public class BWStatsMod {
         client.start();
         CommandManager.INSTANCE.registerCommand(ConfigCommand.class);
 
-        GuiPlayerTabOverlay.class.getDeclaredField("footer").setAccessible(true);
+        GuiPlayerTabOverlay.class.getDeclaredField("field_175255_h").setAccessible(true);
 
         TablistFooterPeriodicParser parser = new TablistFooterPeriodicParser();
         parser.start();

@@ -3,6 +3,7 @@ package net.irisfeanora.mods.bwstats.util;
 import net.irisfeanora.mods.bwstats.BWStatsMod;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiPlayerTabOverlay;
+import net.minecraft.util.IChatComponent;
 
 import java.lang.reflect.Field;
 import java.util.regex.Matcher;
@@ -17,7 +18,7 @@ public class TablistFooterPeriodicParser extends Thread {
         Field footer;
 
         try {
-            footer = GuiPlayerTabOverlay.class.getField("footer");
+            footer = GuiPlayerTabOverlay.class.getField("field_175255_h");
         } catch (NoSuchFieldException e) {
             return;
         }
@@ -36,9 +37,13 @@ public class TablistFooterPeriodicParser extends Thread {
             }
 
             try {
-                String tab = (String)footer.get(Minecraft.getMinecraft().ingameGUI.getTabList());
+                IChatComponent tab = (IChatComponent) footer.get(Minecraft.getMinecraft().ingameGUI.getTabList());
 
-                Matcher matcher = numberPattern.matcher(tab);
+                if(tab == null) {
+                    continue;
+                }
+
+                Matcher matcher = numberPattern.matcher(tab.getUnformattedText());
 
                 int kills, finals, beds;
 
